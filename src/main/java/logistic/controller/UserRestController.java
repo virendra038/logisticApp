@@ -54,7 +54,21 @@ public class UserRestController {
 		return this.userRepository.findByClientClientId(clientId);
 	}
 	
+	@RequestMapping(value="/{userId}" ,method = RequestMethod.PUT)
+	User putUser(@PathVariable Long clientId,@PathVariable Long userId,@RequestBody User user) {
+		this.validateClient(clientId);
+		User nuser = userRepository.findOne(userId);
+		nuser.setUsername(user.username);
+		nuser.setFirstname(user.firstname);
+		nuser.setLastname(user.lastname);
+		nuser.setContact(user.contact);
+		nuser.setLocation(user.location);
+		
+		userRepository.save(nuser);
+		return this.userRepository.findOne(userId);
+	}
 	
+	//findoneUser
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	User readUser(@PathVariable Long clientId, @PathVariable Long userId) {
 		this.validateClient(clientId);

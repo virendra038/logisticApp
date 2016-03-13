@@ -62,5 +62,20 @@ public class User {
 	    
 	    User() { // jpa only
 	    }
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		public void setFirstname(String firstname) {
+			this.firstname = firstname;
+		}
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
+		public void setContact(String contact) {
+			this.contact = contact;
+		}
+		public void setLocation(String location) {
+			this.location = location;
+		}
 
 }
