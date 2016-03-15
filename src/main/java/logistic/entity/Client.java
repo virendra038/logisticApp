@@ -2,18 +2,25 @@ package logistic.entity;
 
 import java.util.Set;
 import java.util.HashSet;
+
+//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Client {
 	
-	@OneToMany(mappedBy="client")
+	@OneToMany(mappedBy="client" ,orphanRemoval=true)
 	private Set<User> users = new HashSet<>();
-
+	
+	@OneToMany(mappedBy="owner",orphanRemoval=true)
+	private Set<Task> tasks = new HashSet<>();
 	
 	@Id
 	@GeneratedValue
@@ -28,7 +35,8 @@ public class Client {
     {
 		return users;
 	}
-
+    
+   
     public Long getClientId() {
 		return clientId;
 	}
@@ -44,8 +52,16 @@ public class Client {
 			this.password = password;
 			
 		}
+	
 	 
 	 Client() { // jpa only
 	    }
+
+
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	
 
 }

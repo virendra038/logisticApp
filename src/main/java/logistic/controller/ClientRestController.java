@@ -49,7 +49,7 @@ public class ClientRestController {
 	@RequestMapping(value = "/{clientId}", method = RequestMethod.DELETE)
 	ResponseEntity<Client> deleteClient(@PathVariable("clientId") Long clientId) {
 		//this.validateUser(clientId);
-	     userRepository.deleteAll();
+	    
 		clientRepository.delete(clientId);
 		 return new ResponseEntity<Client>(HttpStatus.NO_CONTENT);
 	}
